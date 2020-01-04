@@ -27,11 +27,10 @@ passport.use(
       const existingUser = await UserEmaily.findOne({ googleId: profile.id });
       if (existingUser) {
         // we already have a GoogleId record
-        done(null, existingUser); // 'null' is the error
-      } else {
-        const user = await new UserEmaily({ googleId: profile.id }).save();
-        done(null, user);
+        return done(null, existingUser); // 'null' is the error
       }
+      const user = await new UserEmaily({ googleId: profile.id }).save();
+      done(null, user);
     }
   )
 );
