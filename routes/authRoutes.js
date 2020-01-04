@@ -15,7 +15,18 @@ module.exports = app => {
     res.send(req.user);
   });
 
-  app.get('/api/current_user', (req, res) => {
-    res.send(req.user);
+  // app.get('/api/current_user', (req, res) => {
+  //   res.send(req.user);
+  //   console.log(req.user);
+  // });
+
+  app.get('/api/current_user', async (req, res) => {
+    try {
+      const user = await res.send(req.user);
+      // console.log(user);
+    } catch (err) {
+      // console.error(err.message);
+      res.status(500).send('Server Error');
+    }
   });
 };

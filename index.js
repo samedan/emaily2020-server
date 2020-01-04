@@ -7,12 +7,13 @@ const keys = require('./config/keys');
 require('./models/UserEmaily');
 require('./services/passport');
 
+const app = express();
 // db
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-const app = express();
+
 app.use(cors());
 // Cookies
 app.use(
